@@ -1,6 +1,10 @@
 import sys
 
 def compute_transition_function(pattern, alphabet):
+    """
+    Computes delta function for finite automaton accepting
+    given pattern. 
+    """
     m = len(pattern)
     delta = {(q, a): 0 for q in range(m + 1) for a in alphabet}
     
@@ -13,6 +17,10 @@ def compute_transition_function(pattern, alphabet):
     return delta
 
 def fa_search(text, delta, m):
+    '''
+    Searches for all occurrences of the pattern in text.
+    Returns an array of indexes where the pattern was found.
+    '''
     n = len(text)
     q = 0
     indexes = []
