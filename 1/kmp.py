@@ -2,7 +2,7 @@ import sys
 
 def compute_lps(pattern):
     """
-    Computes Longest Prefix Suffix array (lps) for given pattern. 
+    Computes Longest Prefix Suffix array (lps) for given pattern.
     """
     pattern_len = len(pattern)
     lps = [0] * pattern_len
@@ -18,7 +18,8 @@ def compute_lps(pattern):
 
 def kmp_search(text, pattern):
     """
-    Returns an array of indexes where the pattern was found using KMP algorithm.
+    Returns an array of indexes where the pattern was found using
+    KMP algorithm.
     """
     n = len(text)
     m = len(pattern)
