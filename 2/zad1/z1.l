@@ -8,8 +8,8 @@ int lines = 1;
 %%
 
 ^[[:blank:]]*\n*   ;
-[[:blank:]]+$      ;
 [[:blank:]]+$\n+   ;
+[[:blank:]]+$      ;
 [[:blank:]]+       { fprintf(yyout, " "); }
 [a-zA-Z]+          { words++; ECHO; }
 \n                 { lines++; ECHO; }
