@@ -8,8 +8,7 @@ int lines = 1;
 %%
 
 ^[[:blank:]]*\n*   ;
-[[:blank:]]+$\n+   ;
-[[:blank:]]+$      ;
+[[:blank:]]+$\n*   ;
 [[:blank:]]+       { fprintf(yyout, " "); }
 [a-zA-Z]+          { words++; ECHO; }
 \n                 { lines++; ECHO; }
@@ -21,6 +20,6 @@ int yywrap() {
 int main() {
     yyout = fopen("result.txt", "w");
     yylex();
-    printf("words:%d lines:%d", words, lines);
+    printf("words: %d lines: %d", words, lines);
     return 0;
 }
