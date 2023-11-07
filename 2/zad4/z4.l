@@ -65,6 +65,7 @@ risky_operators [/%]
     if (nums.size() == 1) {
         std::cout << "\n= " << nums.top() << "\n";
         nums.pop();
+    } else if (nums.size() == 0) {
     } else {
         std::cout << "\nBłąd: za mała liczba operatorów\n";
         nums = std::stack<int>();
