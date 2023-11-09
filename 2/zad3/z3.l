@@ -10,12 +10,12 @@ include #include.*(\"|>)\n?
 
 continue_line \\\n
 
-singleline [[:blank:]]*\/{continue_line}?\/{continue_line}?.*{continue_line}?.*\n
-multiline_begin \/{continue_line}?\*
-multiline_end \*{continue_line}?\/{continue_line}?\n?
+singleline [[:blank:]]*\/{continue_line}*\/{continue_line}*.*{continue_line}*.*\n
+multiline_begin \/{continue_line}*\*
+multiline_end \*{continue_line}*\/{continue_line}*\n?
 
-doc_singleline [[:blank:]]*\/{continue_line}?\/{continue_line}?(\/|!){continue_line}?.*\n
-doc_multiline_begin \/{continue_line}?\*{continue_line}?(\*|!){continue_line}?
+doc_singleline [[:blank:]]*\/{continue_line}*\/{continue_line}*(\/|!){continue_line}*.*\n
+doc_multiline_begin \/{continue_line}*\*{continue_line}*(\*|!){continue_line}*
 
 %x IN_MULTILINE
 %x IN_STRING
