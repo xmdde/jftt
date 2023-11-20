@@ -2,17 +2,46 @@
 #include <stdio.h>
 
 int words = 0;
-int lines = 1;
+int lines = 0;
 %}
 
+WHITESPACE [[:blank:]]
+%s NEWLINE
+%x WORD
+%x BLANKS
 %%
 
-^[[:blank:]]*\n*   ;
-[[:blank:]]+$\n*   ;
-[[:blank:]]+       { fprintf(yyout, " "); }
-[a-zA-Z]+          { words++; ECHO; }
-\n                 { lines++; ECHO; }
+{WHITESPACE}|\n  ;
 
+<NEWLINE>. {
+    fprintf(yyout, "\n");
+    REJECT;
+}
+
+. {
+    ECHO;
+    words++;
+    lines++;
+    BEGIN(WORD);
+}
+
+<WORD>{
+    [[:blank:]] BEGIN(BLANKS);
+    \n BEGIN(NEWLINE);
+}
+
+<BLANKS>{
+    {WHITESPACE}    ;
+
+    \n BEGIN(NEWLINE);
+
+    . {
+        fprintf(yyout, " ");
+        words++;
+        ECHO;
+        BEGIN(WORD);
+    }
+}
 %%
 int yywrap() {
     return 1; 
